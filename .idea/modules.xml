@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/nextjs-test.iml" filepath="$PROJECT_DIR$/.idea/nextjs-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../starWars-testTask/.idea/starWars-testTask.iml" filepath="$PROJECT_DIR$/../starWars-testTask/.idea/starWars-testTask.iml" />
     </modules>
   </component>
 </project>

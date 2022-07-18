@@ -1,17 +1,48 @@
 import {
     Action,
+    combineReducers,
     configureStore,
     ThunkAction,
 } from '@reduxjs/toolkit';
-import {createWrapper} from 'next-redux-wrapper';
-import usersReducer from './usersSlice'
+import { HYDRATE, createWrapper } from 'next-redux-wrapper'
+import usersReducer, { usersState } from './usersSlice'
+import users from './usersSlice';
+import {User} from '../interfaces';
+import Users from '../pages/users';
+
+type ActionType = {
+    type: string,
+    payload: any,
+}
+
+type ReducerType = (a: usersState, b: ActionType) => {}
+
+
+const combinedReducer = combineReducers<usersState, ActionType>({
+    users,
+  });
+  
+
+const masterReducer: ReducerType = (state, action) => {
+    
+    if (action.type === HYDRATE) {
+        const nextState = {
+            ...state, // use previous state
+            users: {
+                users: [...action.payload.users, ...state.users]
+            }
+        }
+        return nextState;
+    } else {
+        return usersReducer;
+  }
+}
+
 
 
 export const makeStore = () => {
     return configureStore({
-        reducer: {
-            users: usersReducer,
-        },
+        reducer: masterReducer,
     });
 }
 
