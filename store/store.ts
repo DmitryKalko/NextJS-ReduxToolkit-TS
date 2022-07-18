@@ -34,7 +34,7 @@ const masterReducer: ReducerType = (state, action) => {
         }
         return nextState;
     } else {
-        return usersReducer;
+        return combinedReducer(state, action);
   }
 }
 

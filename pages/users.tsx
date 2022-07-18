@@ -38,9 +38,6 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   const { data } = await response.json();
   console.log(data);
   store.dispatch(getAllUsers(data));
-  return {
-    props: {},
-  };
 });
 
 // загрузка данных напрямую из компонента без Redux
